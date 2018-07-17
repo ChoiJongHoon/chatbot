@@ -1,6 +1,8 @@
 {
-    "appSecret": "",
-    "pageAccessToken": "",
-    "validationToken": "",
-    "serverURL": ""
+    "appSecret": "1f6dc9ab228059458bd3d12a9863be02",
+    "pageAccessToken": "EAAL8AEZCSfB8BAOa7pjS336kqBLeclwrNhtvVgCC0GfHyc2sgrDeKDQVyUusKJTOF7dXSMPOXe1QuA6CuwqopLvicAZA7F1MOXbPpNvTRFl2KKH4syvvzJDv82Rj4OtLp8DoK4hZClqiYZApP1ZBSoZB5C4dSePsbZB5JFZCTe4LaQZDZD",
+    "validationToken": "840028222815263|hw7YmRWltW09XxbHjjA6Yl9fjm4",
+    "serverURL": "https://choi-freeday.c9users.io"
 }
+
+
