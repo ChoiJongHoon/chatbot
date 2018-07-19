@@ -390,16 +390,6 @@ function receivedMessage(event) {
   db_insert_message(senderID, messageText);
 
 
-  //var par = db_collect_select(messageText);
-
-  // console.log(typeof(par) + par  + "par");
-  // if (par) {
-  //   console.log("이게 맞다 시발");
-  // }
-  // else {
-  //   console.log("아직 안들어간기 같은데");
-  // }
-
   var mess = message;
   var db_mess = "1";
   var key = "";
