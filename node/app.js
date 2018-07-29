@@ -38,8 +38,9 @@ app.use(express.static('public'));
  */
 
 console.log("하이");
+var final = "";
 
-function db_insert_message(usernum, usermess) {
+function db_insert_message(usernum, usermess, callback) {
 
   var connection_message = mysql.createConnection({
     user: 'freeday',
@@ -65,6 +66,7 @@ function db_insert_message(usernum, usermess) {
     }
   });
   connection_message.end();
+  callback();
 }
 
 // function db_collect_select(message) {
@@ -387,7 +389,55 @@ function receivedMessage(event) {
   }
 
 
-  db_insert_message(senderID, messageText);
+  db_insert_message(senderID, messageText, function() {
+  var db_mess = "1";
+  var key = "";
+  var connection_message = mysql.createConnection({
+    user: 'freeday',
+    password: '',
+    database: 'chat'
+  });
+
+  // var count = 0;
+
+  connection_message.connect();
+    var select_sql = 'SELECT * FROM message WHERE usernumber = ' + senderID;
+  connection_message.query(select_sql, (err, rows, fields) => {
+
+    if (!err) {
+      //console.log('The solution is : ', rows);
+      //console.log(rows[0].study);
+      //console.log(rows[1].study);
+
+
+      console.log('DB의 길이는 : ' + rows.length);
+
+      /*for(var i = 0; i < rows.length; i++){
+        console.log(rows[i].usernumber);
+        console.log(rows[i].usermessage);
+      }*/
+      
+      
+      for(var i = 0; i < rows.length; i++) {
+        console.log(i+1 + "번째 메시지는? " + rows[i].usermessage + " 입니다.");
+      }
+      
+      console.log("최종훈 rows[rows.length-2].usermessage 은" + rows[rows.length - 2].usermessage);
+      db_mess = rows[rows.length - 2].usermessage;
+      console.log("콜백함수안의 db_mess의 값은? ", db_mess);
+
+      key = db_mess;
+      final = key;
+
+      console.log("key값확인합니다요!!" + key + " 와 이거 뭐지");
+      // count++;
+    }
+
+  });
+  connection_message.end();
+  });
+  
+  console.log("final 값이 뭘까? : " + final + " 요고네");
 
 
   var mess = message;
@@ -431,7 +481,6 @@ function receivedMessage(event) {
     }
 
   });
-
 
   connection_message.end(function() {
 
